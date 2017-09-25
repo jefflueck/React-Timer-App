@@ -13600,11 +13600,11 @@ var Timer = __webpack_require__(267);
 var Countdown = __webpack_require__(268);
 
 // Load foundation
-__webpack_require__(269);
+__webpack_require__(270);
 $(document).foundation();
 
 // App css
-__webpack_require__(271);
+__webpack_require__(272);
 
 ReactDOM.render(React.createElement(
   Router,
@@ -29585,6 +29585,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = __webpack_require__(4);
+var Clock = __webpack_require__(269);
 
 var Countdown = function (_React$Component) {
   _inherits(Countdown, _React$Component);
@@ -29599,9 +29600,9 @@ var Countdown = function (_React$Component) {
     key: 'render',
     value: function render() {
       return React.createElement(
-        'p',
+        'div',
         null,
-        'Countdown.jsx'
+        React.createElement(Clock, { totalSeconds: 120 })
       );
     }
   }]);
@@ -29615,10 +29616,81 @@ module.exports = Countdown;
 /* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(4);
+
+var Clock = function (_React$Component) {
+  _inherits(Clock, _React$Component);
+
+  function Clock() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Clock);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Clock.__proto__ || Object.getPrototypeOf(Clock)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
+      totalSeconds: 0;
+    }, _this.formatSeconds = function (totalSeconds) {
+      var seconds = totalSeconds % 60;
+      var minutes = Math.floor(totalSeconds / 60);
+
+      if (seconds < 10) {
+        seconds = '0' + seconds;
+      }
+
+      if (minutes < 10) {
+        minutes = '0' + minutes;
+      }
+
+      return minutes + ':' + seconds;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Clock, [{
+    key: 'render',
+    value: function render() {
+      var totalSeconds = this.props.totalSeconds;
+
+      return React.createElement(
+        'div',
+        { className: 'clock' },
+        React.createElement(
+          'span',
+          { className: 'clock-text' },
+          this.formatSeconds(totalSeconds)
+        )
+      );
+    }
+  }]);
+
+  return Clock;
+}(React.Component);
+
+module.exports = Clock;
+
+/***/ }),
+/* 270 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(270);
+var content = __webpack_require__(271);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(120)(content, {});
@@ -29638,7 +29710,7 @@ if(false) {
 }
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(119)();
@@ -29652,13 +29724,13 @@ exports.push([module.i, "@charset \"UTF-8\";@media print,screen and (min-width:4
 
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(272);
+var content = __webpack_require__(273);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(120)(content, {});
@@ -29678,7 +29750,7 @@ if(false) {
 }
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(119)();
@@ -29686,7 +29758,7 @@ exports = module.exports = __webpack_require__(119)();
 
 
 // module
-exports.push([module.i, ".top-bar, .top-bar ul {\n  background-color: #333333; }\n\n.top-bar .menu-text {\n  color: white; }\n\n.top-bar .menu > .menu-text > a {\n  display: inline;\n  padding: 8px; }\n\n.top-bar .active-link {\n  font-weight: bold; }\n", ""]);
+exports.push([module.i, ".top-bar, .top-bar ul {\n  background-color: #333333; }\n\n.top-bar .menu-text {\n  color: white; }\n\n.top-bar .menu > .menu-text > a {\n  display: inline;\n  padding: 8px; }\n\n.top-bar .active-link {\n  font-weight: bold; }\n\n.clock {\n  align-items: center;\n  background-color: #B5D0E2;\n  border: 2px solid #2099E8;\n  border-radius: 50%;\n  display: flex;\n  height: 14rem;\n  justify-content: center;\n  margin: 4rem auto;\n  width: 14rem; }\n\n.clock-text {\n  color: white;\n  font-size: 2.25rem;\n  font-weight: 300; }\n", ""]);
 
 // exports
 
