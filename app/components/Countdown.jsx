@@ -4,8 +4,10 @@ const CountdownForm = require('CountdownForm');
 
 
 class Countdown extends React.Component {
-  getInitalState = () => {
-    return {count: 0};
+  constructor(props){
+    super(props);
+    this.state = {count: 0};
+    }
   }
   handleSetCountdown(seconds) {
     this.setState({
