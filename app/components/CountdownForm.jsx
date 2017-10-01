@@ -21,4 +21,4 @@ class CountdownForm extends React.Component {
   }
 }
 
-module.exports = CountdownForm
+module.exports = CountdownForm;
