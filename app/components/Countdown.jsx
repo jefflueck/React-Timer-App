@@ -9,7 +9,7 @@ class Countdown extends React.Component {
     this.state = {count: 0};
     }
 
-  handleSetCountdown(seconds) {
+  handleSetCountdown = (seconds) => {
     this.setState({
       count: seconds
     });

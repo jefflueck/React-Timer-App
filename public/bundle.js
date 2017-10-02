@@ -29436,18 +29436,13 @@ var Main = function Main(props) {
   return React.createElement(
     'div',
     null,
+    React.createElement(Nav, null),
     React.createElement(
       'div',
-      null,
+      { className: 'row' },
       React.createElement(
         'div',
-        null,
-        React.createElement(Nav, null),
-        React.createElement(
-          'p',
-          null,
-          'Main.jsx Rendered'
-        ),
+        { className: 'column small-centered medium-6 large-4' },
         props.children
       )
     )
@@ -29596,18 +29591,17 @@ var Countdown = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Countdown.__proto__ || Object.getPrototypeOf(Countdown)).call(this, props));
 
+    _this.handleSetCountdown = function (seconds) {
+      _this.setState({
+        count: seconds
+      });
+    };
+
     _this.state = { count: 0 };
     return _this;
   }
 
   _createClass(Countdown, [{
-    key: 'handleSetCountdown',
-    value: function handleSetCountdown(seconds) {
-      this.setState({
-        count: seconds
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var count = this.state.count;
