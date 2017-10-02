@@ -8,7 +8,7 @@ class Countdown extends React.Component {
     super(props);
     this.state = {count: 0};
     }
-    
+
   handleSetCountdown(seconds) {
     this.setState({
       count: seconds

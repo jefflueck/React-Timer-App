@@ -1,9 +1,10 @@
 const React = require('react');
 
 class Clock extends React.Component {
-  getDefaultProps = () => {
-    totalSeconds: 0
-  }
+    constructor(props) {
+    super(props);
+    this.state = {count: 0};
+    }
   propTypes: {
     totalSeconds: React.PropTypes.number
   }
