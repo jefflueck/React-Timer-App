@@ -1,35 +1,38 @@
-const expect = require('expect');
-const React = require ('react');
+const React = require('react');
 const ReactDOM = require('react-dom');
+const expect = require('expect');
+const $ = require('jQuery');
 const TestUtils = require('react-addons-test-utils');
-const $ = require('JQuery');
 
-let CountdownForm = require('CountdownForm');
+const Countdown = require('Countdown');
 
-describe('CountdownForm', () => {
+describe ('Countdown', () => {
   it('should exist', () => {
-    expect(CountdownForm).toExist();
+    expect(Countdown).toExist();
   });
 
-  it('should call on set Countdown if valid seconds entered', () => {
-    let spy = expect.createSpy();
-    let countdownForm = TestUtils.renderIntoDocument(<CountdownForm onSetCountdown={spy}/>);
-    let $el = $(ReactDOM.findDOMNode(countdownForm));
+  describe('handleSetCountdown', () => {
+    it('should set state to started and countdown', (done) => {
+      let countdown = TestUtils.renderIntoDocument(<Countdown/>);
+      countdown.handleSetCountdown(10);
 
-    countdownForm.refs.seconds.value='109';
-    TestUtils.Simulate.submit($el.find('form')[0]);
+      expect(countdown.state.count).toBe(10);
+      expect(countdown.state.countdownStatus).toBe('started');
 
-    expect(spy).toHaveBeenCalledWith(109);
-  });
+      setTimeout(() => {
+        expect(countdown.state.count).toBe(9);
+        done();
+      }, 1001);
+    });
 
-  it('should not call on set Countdown if invalid seconds entered', () => {
-    let spy = expect.createSpy();
-    let countdownForm = TestUtils.renderIntoDocument(<CountdownForm onSetCountdown={spy}/>);
-    let $el = $(ReactDOM.findDOMNode(countdownForm));
+    it('should never set count to less than zero', (done) => {
+      let countdown = TestUtils.renderIntoDocument(<Countdown/>);
+      countdown.handleSetCountdown(1);
 
-    countdownForm.refs.seconds.value='109b';
-    TestUtils.Simulate.submit($el.find('form')[0]);
-
-    expect(spy).toNotHaveBeenCalled();
+      setTimeout(() => {
+        expect(countdown.state.count).toBe(0);
+        done();
+      }, 3001);
+    });
   });
 });

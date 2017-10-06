@@ -29591,13 +29591,36 @@ var Countdown = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Countdown.__proto__ || Object.getPrototypeOf(Countdown)).call(this, props));
 
+    _this.componentDidUpdate = function (prevProps, prevState) {
+      if (_this.state.countdownStatus !== prevState.countdownStatus) {
+        switch (_this.state.countdownStatus) {
+          case 'started':
+            _this.startTimer();
+            break;
+        }
+      }
+    };
+
+    _this.startTimer = function () {
+      _this.timer = setInterval(function () {
+        var newCount = _this.state.count - 1;
+        _this.setState({
+          count: newCount >= 0 ? newCount : 0
+        });
+      }, 1000);
+    };
+
     _this.handleSetCountdown = function (seconds) {
       _this.setState({
-        count: seconds
+        count: seconds,
+        countdownStatus: 'started'
       });
     };
 
-    _this.state = { count: 0 };
+    _this.state = {
+      count: 0,
+      countdownStatus: 'stoped'
+    };
     return _this;
   }
 
