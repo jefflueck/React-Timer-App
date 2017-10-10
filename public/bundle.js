@@ -29608,12 +29608,21 @@ var Countdown = function (_React$Component) {
       }
     };
 
+    _this.componentWillUnmount = function () {
+      clearInterval(_this.timer);
+      _this.timer = undefined;
+    };
+
     _this.startTimer = function () {
       _this.timer = setInterval(function () {
         var newCount = _this.state.count - 1;
         _this.setState({
           count: newCount >= 0 ? newCount : 0
         });
+
+        if (newCount === 0) {
+          _this.setState({ countdownStatus: 'stopped' });
+        }
       }, 1000);
     };
 
